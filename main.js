@@ -46,8 +46,8 @@ function nextSlide(){
 	box = box || document.getElementById("box");
 	
 	setTimeout(function(){
-		box.style.marginRight = "-2000px";
-		box.style.marginLeft = "2000px";
+		box.style.marginRight = "-200%";
+		box.style.marginLeft = "200%";
 	},500);
 
 	var newBox = box.cloneNode(true);
