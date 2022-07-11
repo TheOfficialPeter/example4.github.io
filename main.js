@@ -7,7 +7,9 @@ var box3 = document.getElementById("num3-box");
 var box4 = document.getElementById("num4-box");
 var discord = document.getElementById("discord");
 var mail = document.getElementById("mail");
-var box = null;
+var box = document.getElementById("box");
+var dragStart = 0;
+var dragThresh = 300;
 var x = 0;
 var highlightButton = 0;
 var debounce = false
@@ -64,7 +66,7 @@ function nextSlide(num){
 		},500);
 
 		box = box || document.getElementById("box");
-		
+
 		setTimeout(function(){
 			pageNum.innerText = "";
 			pageTitle.innerText = "";
@@ -101,6 +103,20 @@ function nextSlide(num){
 			newBox.style.transition = "all 1s";
 			box.remove();
 			box = newBox;
+
+			box.onmousedown = function(){
+				dragStart = event.clientX
+				document.onmousemove = function(event2){
+					if ((event2.clientX - dragStart) >= dragThresh){
+						nextSlide(-1);
+					};
+				};
+			};
+		
+			box.onmouseup = function(){
+				document.onmousemove = null;
+			};
+
 		},1000);
 
 		setTimeout(function(){
@@ -147,4 +163,42 @@ box4.onclick = function(){
 
 arrow.onclick = function(){
 	nextSlide(-1);
+};
+
+box.onmousedown = function(event){
+	dragStart = event.clientX
+	document.onmousemove = function(event2){
+		if ((event2.clientX - dragStart) >= dragThresh){
+			nextSlide(-1);
+		};
+	};
+};
+		
+box.onmouseup = function(){
+	document.onmousemove = null;
+};
+
+window.onclick = function(event3){
+	var circle = document.createElement("div");
+	circle.id = "circle";
+	circle.style = "border-radius: 50%; height: 30px; width: 30px; position: absolute; background: transparent; border: 4px solid #FF7878;";
+	circle.style.left = (event3.clientX - 30/2).toString()+"px";
+	circle.style.top = (event3.clientY - 30/2).toString()+"px";
+	circle.style.zIndex = "9999";
+	circle.style.transition = "all .3s";
+	
+	setTimeout(function(){
+		circle.style.height = "10px";
+		circle.style.width = "10px";
+	},100);
+
+	setTimeout(function(){
+		circle.style.opacity = "0";
+	},100);
+
+	setTimeout(function(){
+		circle.remove()
+	},300);
+
+	document.body.appendChild(circle);
 };
