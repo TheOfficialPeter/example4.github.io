@@ -39,6 +39,12 @@ function nextSlide(num){
 				buttons[x].style.background = "rgba(217, 217, 217, 0.2)";	
 				highlightButton = x;
 			}
+			else
+			{
+				buttons[x-1].style.background = "rgba(0,0,0,0)";
+				buttons[x].style.background = "rgba(217, 217, 217, 0.2)";	
+				highlightButton = x;
+			};
 		};
 
 		var pageNum = document.getElementById("red-page-number");
@@ -122,32 +128,6 @@ window.onresize = function(){
 		resizeWindow("mobile");
 	}
 };
-
-function sendNotif(platform){
-	if (platform == "discord"){
-		var notifBlock = document.createElement("div");
-		notifBlock.id = "notifBlock";
-
-
-		document.body.appendChild(notifBlock);
-	}
-	else
-	{
-		var notifBlock = document.createElement("div");
-		notifBlock.id = "notifBlock";
-
-
-		document.body.appendChild(notifBlock);
-	}
-};
-
-discord.onclick = function(){
-	sendNotif("discord");
-}
-
-mail.onclick = function(){
-	sendNotif("mail");
-}
 
 box1.onclick = function(){
 	nextSlide(0);
