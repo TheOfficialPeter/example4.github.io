@@ -1,5 +1,5 @@
 var titles = ["About Me", "Previous Work", "Contact", "Credits"];
-var contents = ["I was 16 years old when I had my first big breakthrough. It was a Friday evening after school and the library was empty. The kids were out with their friends and parents were out with theirs. No one was there but I. I sat down at a desk and started doing something. I didn't understand it or anything that was going on around me, but it didn't matter. I found that I could 'program' and that it was fun. That was the moment I understood that I was a programmer. I could have been able to think differently because I started to understand the fundamentals of computing: functions, variables, data structures, algorithms, interpreters. I could apply algorithms and write code with an interface to do things. I was writing applications. Later, when I got my programming teachers training degree, I realized that I couldn't keep up. The lab and the training were so exciting but the curriculum was so dull. Programming became a job to teach me how to do things I never needed to do. The stuff they taught me about working with data structures was great because I just wanted to understand how things worked. But programming itself became more of an obstacle to learning than anything else.", "previous work goes here with images or smth", "","This website is an example of my work. It was made using HTML, CSS and JS also without frameworks becuase I hate those."];
+var contents = ["About me stuff here", "previous work goes here with images or smth", "","This website is an example of my work. It was made using HTML, CSS and JS also without frameworks becuase I hate those."];
 var arrow = document.getElementById("arrow");
 var box1 = document.getElementById("num1-box");
 var box2 = document.getElementById("num2-box");
@@ -32,9 +32,13 @@ function nextSlide(num){
 		else
 		{
 			x += 1;
-			buttons[x].style.background = "rgba(217, 217, 217, 0.2)";	
-			buttons[x-1].style.background = "rgba(0,0,0,0)";
-			highlightButton = x;
+
+			if (x == 4){
+				buttons[x-1].style.background = "rgba(0,0,0,0)";
+				x = 0;
+				buttons[x].style.background = "rgba(217, 217, 217, 0.2)";	
+				highlightButton = x;
+			}
 		};
 
 		var pageNum = document.getElementById("red-page-number");
@@ -50,6 +54,7 @@ function nextSlide(num){
 		setTimeout(function(){
 			pageNum.remove();
 			pageTitle.remove();
+			pageContent.remove();
 		},500);
 
 		box = box || document.getElementById("box");
@@ -79,17 +84,9 @@ function nextSlide(num){
 			var pageTitle = document.getElementById("page-title");
 			var pageContent = document.getElementById("page-content");
 			
-			if (num != null){
-				pageNum.innerText = "0"+(num+1).toString();
-				pageTitle.innerText = titles[num];
-				pageContent.innerText = contents[num];	
-			}
-			else
-			{
-				pageNum.innerText = "0"+(x+1).toString();
-				pageTitle.innerText = titles[x];
-				pageContent.innerText = contents[x];
-			}
+			pageNum.innerText = "0"+(x+1).toString();
+			pageTitle.innerText = titles[x];
+			pageContent.innerText = contents[x];
 		}, 500);
 
 		setTimeout(function(){		
