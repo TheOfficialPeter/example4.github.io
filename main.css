@@ -46,6 +46,7 @@ color: #FFFFFF;
 }
 
 #num1-box{
+cursor: pointer;
 position: absolute;
 width: 85px;
 height: 85px;
@@ -60,6 +61,7 @@ transition: all .3s;
 }
 
 #num2-box{
+cursor: pointer;
 position: absolute;
 width: 85px;
 height: 85px;
@@ -73,6 +75,7 @@ transition: all .3s;
 }
 
 #num3-box{
+cursor: pointer;
 position: absolute;
 width: 85px;
 height: 85px;
@@ -86,6 +89,7 @@ transition: all .3s;
 }
 
 #num4-box{
+cursor: pointer;
 position: absolute;
 width: 85px;
 height: 85px;
@@ -270,10 +274,10 @@ z-index: 11;
 #page-content{
 transition: all .5s;
 position: absolute;
-width: 767px;
 height: 470px;
 left: 87px;
-top: 100px;
+right: 60px;
+top: 150px;
 
 font-family: Open;
 font-style: normal;
@@ -281,7 +285,6 @@ font-weight: 400;
 font-size: 18px;
 line-height: 25px;
 display: flex;
-align-items: center;
 
 color: #FFFFFF;
 z-index: 11;
