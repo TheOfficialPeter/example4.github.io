@@ -181,16 +181,18 @@ box.onmouseup = function(){
 window.onclick = function(event3){
 	var circle = document.createElement("div");
 	circle.id = "circle";
-	circle.style = "border-radius: 50%; height: 30px; width: 30px; position: absolute; background: transparent; border: 4px solid #FF7878;";
-	circle.style.left = (event3.clientX - 30/2).toString()+"px";
-	circle.style.top = (event3.clientY - 30/2).toString()+"px";
+	circle.style = "border-radius: 50%; height: 0; width: 0; position: absolute; background: transparent; border: 4px solid #FF7878;";
+	circle.style.left = (event3.clientX - 5).toString()+"px";
+	circle.style.top = (event3.clientY - 5).toString()+"px";
 	circle.style.zIndex = "9999";
 	circle.style.transition = "all .3s";
 	
 	setTimeout(function(){
-		circle.style.height = "10px";
-		circle.style.width = "10px";
-	},100);
+		circle.style.height = "30px";
+		circle.style.width = "30px";
+		circle.style.marginLeft = "-15px";
+		circle.style.marginTop = "-15px";
+	},50);
 
 	setTimeout(function(){
 		circle.style.opacity = "0";
