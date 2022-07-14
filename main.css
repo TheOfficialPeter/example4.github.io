@@ -32,13 +32,12 @@ position: absolute;
 width: 221px;
 height: 61px;
 left: calc(50% - 221px/2 - 61.5px);
-top: 39px;
+top: calc(50% - 61px/2);
 
 font-family: Mont;
 font-style: normal;
 font-weight: 400;
-font-size: 50px;
-line-height: 61px;
+font-size: 45px;
 
 /* identical to box height */
 
@@ -50,11 +49,12 @@ cursor: pointer;
 position: absolute;
 width: 85px;
 height: 85px;
-left: 93px;
-top: calc(50% - 85px/2 - 215px);
+left: 97px;
+top: calc(50% - 85px/2 - 209px);
 z-index: 2;
 background: rgba(217, 217, 217, 0.2);
-border: 4px solid rgba(0, 0, 0, 0.2);
+outline: 4px solid rgba(0, 0, 0, 0.2);
+box-shadow: 0 0 10px rgba(0,0,0,.25);
 border-radius: 50%;
 transition: all .3s;
 }
@@ -64,11 +64,11 @@ cursor: pointer;
 position: absolute;
 width: 85px;
 height: 85px;
-left: 93px;
-top: calc(50% - 85px/2 - 75px);
+left: 97px;
+top: calc(50% - 85px/2 - 70px);
 z-index: 2;
-border: 4px solid rgba(0, 0, 0, 0.2);
-filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.25));
+outline: 4px solid rgba(0, 0, 0, 0.2);
+box-shadow: 0 0 10px rgba(0,0,0,.25);
 border-radius: 50%;
 transition: all .3s;
 }
@@ -78,11 +78,11 @@ cursor: pointer;
 position: absolute;
 width: 85px;
 height: 85px;
-left: 93px;
-top: calc(50% - 85px/2 + 65px);
+left: 97px;
+top: calc(50% - 85px/2 + 69px);
 z-index: 2;
-border: 4px solid rgba(0, 0, 0, 0.2);
-filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.25));
+outline: 4px solid rgba(0, 0, 0, 0.2);
+box-shadow: 0 0 10px rgba(0,0,0,.25);
 border-radius: 50%;
 transition: all .3s;
 }
@@ -92,11 +92,11 @@ cursor: pointer;
 position: absolute;
 width: 85px;
 height: 85px;
-left: 93px;
-top: calc(50% - 85px/2 + 205px);
+left: 97px;
+top: calc(50% - 85px/2 + 209px);
 z-index: 2;
-border: 4px solid rgba(0, 0, 0, 0.2);
-filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.25));
+outline: 4px solid rgba(0, 0, 0, 0.2);
+box-shadow: 0 0 10px rgba(0,0,0,.25);
 border-radius: 50%;
 transition: all .3s;
 }
@@ -110,7 +110,7 @@ top: calc(50% - 68px/2 - 211px);
 
 font-family: Open;
 font-style: normal;
-font-weight: 400;
+font-weight: 100;
 font-size: 50px;
 line-height: 68px;
 
@@ -128,7 +128,7 @@ top: calc(50% - 68px/2 - 71px);
 
 font-family: Open;
 font-style: normal;
-font-weight: 400;
+font-weight: 100;
 font-size: 50px;
 line-height: 68px;
 
@@ -146,7 +146,7 @@ top: calc(50% - 68px/2 + 70px);
 
 font-family: Open;
 font-style: normal;
-font-weight: 400;
+font-weight: 100;
 font-size: 50px;
 line-height: 68px;
 
@@ -164,7 +164,7 @@ top: calc(50% - 68px/2 + 210px);
 
 font-family: Open;
 font-style: normal;
-font-weight: 400;
+font-weight: 100;
 font-size: 50px;
 line-height: 68px;
 
@@ -223,7 +223,6 @@ left: 282px;
 right: 123px;
 top: 172px;
 bottom: 82px;
-
 background: rgba(217, 217, 217, 0.05);
 box-shadow: 5px 4px 20px rgba(0, 0, 0, 0.1);
 }
@@ -332,12 +331,12 @@ cursor: pointer;
 }
 
 #discord:hover{
-filter: brightness(50%);
+filter: brightness(75%);
 transition: filter .3s;
 }
 
 #mail:hover{
-filter: brightness(50%);
+filter: brightness(75%);
 transition: filter .3s;
 }
 
@@ -351,3 +350,4 @@ z-index: 11;
 cursor: pointer;
 transition: all .5s;
 }
+
