@@ -9,10 +9,12 @@ var discord = document.getElementById("discord");
 var mail = document.getElementById("mail");
 var box = document.getElementById("box");
 var dragStart = 0;
-var dragThresh = 300;
 var x = 0;
+var dragThreshX = 300;
+var dragThreshY = 200;
 var highlightButton = 0;
 var debounce = false
+var device = "";
 
 function nextSlide(num){
 	if (debounce === false){
@@ -192,7 +194,10 @@ function nextSlide(num){
 			box.onmousedown = function(){
 				dragStart = event.clientX
 				document.onmousemove = function(event2){
-					if ((event2.clientX - dragStart) >= dragThresh){
+					if ((event2.clientX - dragX) >= dragThreshX && device == ""){
+						nextSlide(-1);
+					}
+					else if ((event2.clientY - dragY) >= dragThreshY && device == "mobile"){
 						nextSlide(-1);
 					};
 				};
@@ -218,11 +223,12 @@ function nextSlide(num){
 
 function resizeWindow(platform){
 	if (platform == "mobile"){
+		device = "mobile";
 		var navbar = document.getElementById("nav");
 		var newNavbar = navbar.cloneNode();
 		var navTitle = document.getElementById("nav-title");
-		var discord = document.getElementById("discord");
-		var email = document.getElementById("mail");
+		var discord = document.getElementById("newDiscord") || document.getElementById("discord");
+		var email = document.getElementById("newMail") || document.getElementById("mail");
 		var box = document.getElementById("box");
 		var boxShadow = document.getElementById("box-shadow");
 
@@ -238,20 +244,37 @@ function resizeWindow(platform){
 			navbar.style.width = "250px";
 			navbar.style.left = "calc(50% - 250px/2)";
 		
-			discord.id = "";
-			discord.style.zIndex = "99";
-			discord.style.bottom = "10";
-			discord.style.opacity = "1";
+			discord.id = "newDiscord";
+			discord.style = `position: absolute;
+								width: 28px;
+								height: 28px;
+								left: calc(50% - 28px/2 - 30px);
+								bottom: 27px;
+								transition: filter .3s;
+								opacity: 1;
+								z-index: 999;
+								cursor: pointer;`;
+
+			email.id = "newMail";
+			email.style = `position: absolute;
+								width: 28px;
+								height: 28px;
+								left: calc(50% - 28px/2 + 30px);
+								bottom: 27px;
+								transition: filter .3s;
+								opacity: 1;
+								z-index: 999;
+								cursor: pointer;`;
 
 			arrow.id = "newArrow";
+			arrow.style.width = "75px";
+			arrow.style.height = "75px";
 			arrow.style.position = "absolute";
 			arrow.style.zIndex = "9999";
 			arrow.style.bottom = "100px";
+			arrow.style.top = "";
 			arrow.style.transform = "rotate(90deg)";
-			arrow.style.left = "calc(50% - 105px/2";
-
-			discord.style.opacity = "0";
-			email.style.opacity = "0";
+			arrow.style.left = "calc(50% - 75px/2";
 
 			// same style as navbar
 			var newNavbar = document.getElementById("newNav") || navbar.cloneNode();
@@ -259,9 +282,13 @@ function resizeWindow(platform){
 				newNavbar.style = ``;
 
 				box.style.transition = "all 0s";
-				box.style.marginTop = "100px";
+				box.style.marginTop = "50px";
+				box.style.left = "10px";
+				box.style.right = "20px";
 				boxShadow.style.transition = "all 0s";
-				boxShadow.style.marginTop = "100px";
+				boxShadow.style.marginTop = "50px";
+				boxShadow.style.left = "20px";
+				boxShadow.style.right = "10px";
 				
 				newNavbar.id = "newNav";
 				newNavbar.style = `box-sizing: border-box;
@@ -290,21 +317,35 @@ function resizeWindow(platform){
 	}
 	else
 	{
+		device = "";
 		var navbar = document.getElementById("nav");
 		var navTitle = document.getElementById("nav-title");
-		var discord = document.getElementById("discord");
-		var email = document.getElementById("mail");
+		var discord = document.getElementById("discord") || document.getElementById("newDiscord");
+		var email = document.getElementById("newMail") || document.getElementById("mail");
 		var box = document.getElementById("box");
 		var boxShadow = document.getElementById("box-shadow");
+		var arrow = document.getElementById("newArrow") || document.getElementById("arrow");
 
 		try{
-			var arrow = document.getElementById("arrow");
 			var newNavbar = document.getElementById("newNav");
 			newNavbar.remove();
 		}
 		catch{
-			discord.style.opacity = "1";
-			email.style.opacity = "1";
+			discord.style = `position: absolute;
+								width: 28px;
+								height: 28px;
+								left: calc(50% - 28px/2 + 123px);
+								top: 55px;
+								transition: filter .3s;
+								opacity: 1;
+								cursor: pointer;`;
+			email.style = `position: absolute;
+							width: 28px;
+							height: 28px;
+							left: calc(50% - 28px/2 + 163px);
+							top: 55px;
+							transition: filter .3s;
+							cursor: pointer;`;
 
 			navTitle.style.fontSize = "45px";
 			navTitle.style.marginTop = "";
@@ -315,10 +356,22 @@ function resizeWindow(platform){
 			navbar.style.left = "calc(50% - 397px/2)";
 			
 			box.style.marginTop = "";
+			box.style.left = "234px";
+			box.style.right = "171px";
 			box.style.transition = "all 1s";
 			boxShadow.style.marginTop = "";
 			boxShadow.style.transition = "all .5";
-
+			boxShadow.style.left = "282px";
+			boxShadow.style.right = "123px";
+	
+			arrow.style = `position: absolute;
+							width: 105px;
+							height: 105px;
+							right: 119px;
+							top: calc(50% - 105px/2);
+							z-index: 99;
+							cursor: pointer;
+							transition: all .5s;`;
 		};
 	};
 };
@@ -358,9 +411,13 @@ arrow.onclick = function(){
 };
 
 box.onmousedown = function(event){
-	dragStart = event.clientX
+	dragX = event.clientX;
+	dragY = event.clientY;
 	document.onmousemove = function(event2){
-		if ((event2.clientX - dragStart) >= dragThresh){
+		if ((event2.clientX - dragX) >= dragThreshX && device == ""){
+			nextSlide(-1);
+		}
+		else if ((event2.clientY - dragY) >= dragThreshY && device == "mobile"){
 			nextSlide(-1);
 		};
 	};
