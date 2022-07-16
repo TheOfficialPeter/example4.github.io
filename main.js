@@ -77,7 +77,14 @@ function nextSlide(num){
 
 		var newBox = box.cloneNode(true);
 		newBox.style.background = "crimson";
-		newBox.style.margin = "37px -48px -37px 48px";
+
+		if (device == "mobile"){
+			newBox.style.margin = "87px -10px -37px 10px";
+		}
+		else{
+			newBox.style.margin = "37px -48px -37px 48px";
+		};
+
 		newBox.style.transition = "all .3s";
 		
 		newBox.style.zIndex = "1";
@@ -184,7 +191,7 @@ function nextSlide(num){
 
 		}, 500);
 
-		setTimeout(function(){		
+		setTimeout(function(){
 			newBox.style.background = "#2e2e2e";
 			newBox.style.zIndex = "11";
 			newBox.style.transition = "all 1s";
@@ -209,8 +216,13 @@ function nextSlide(num){
 
 		},1000);
 
-		setTimeout(function(){
-			newBox.style.margin = "0";
+		setTimeout(function(){	
+			if (device == "mobile"){
+				newBox.style.margin = "0 0 0 0";
+			}
+			else{
+				newBox.style.margin = "0";
+			};
 		}, 100);
 
 		setTimeout(function(){
@@ -231,6 +243,24 @@ function resizeWindow(platform){
 		var email = document.getElementById("newMail") || document.getElementById("mail");
 		var box = document.getElementById("box");
 		var boxShadow = document.getElementById("box-shadow");
+		var pageContent = document.getElementById("page-content");
+		var num1Box = document.getElementById("num1-box");
+		var num2Box = document.getElementById("num2-box");
+		var num3Box = document.getElementById("num3-box");
+		var num4Box = document.getElementById("num4-box");
+		var num1 = document.getElementById("num1");
+		var num2 = document.getElementById("num2");
+		var num3 = document.getElementById("num3");
+		var num4 = document.getElementById("num4");
+
+		num1Box.style.opacity = "0";
+		num2Box.style.opacity = "0";
+		num3Box.style.opacity = "0";
+		num4Box.style.opacity = "0";
+		num1.style.opacity = "0";
+		num2.style.opacity = "0";
+		num3.style.opacity = "0";
+		num4.style.opacity = "0";
 
 		try{
 			var arrow = document.getElementById("arrow") || document.getElementById("newArrow");
@@ -266,6 +296,8 @@ function resizeWindow(platform){
 								z-index: 999;
 								cursor: pointer;`;
 
+			pageContent.style.left = "calc(50% - 20px);";
+
 			arrow.id = "newArrow";
 			arrow.style.width = "75px";
 			arrow.style.height = "75px";
@@ -282,11 +314,11 @@ function resizeWindow(platform){
 				newNavbar.style = ``;
 
 				box.style.transition = "all 0s";
-				box.style.marginTop = "50px";
+				box.style.marginTop = "0";
 				box.style.left = "10px";
 				box.style.right = "20px";
 				boxShadow.style.transition = "all 0s";
-				boxShadow.style.marginTop = "50px";
+				boxShadow.style.marginTop = "0";
 				boxShadow.style.left = "20px";
 				boxShadow.style.right = "10px";
 				
@@ -325,6 +357,23 @@ function resizeWindow(platform){
 		var box = document.getElementById("box");
 		var boxShadow = document.getElementById("box-shadow");
 		var arrow = document.getElementById("newArrow") || document.getElementById("arrow");
+		var num1Box = document.getElementById("num1-box");
+		var num2Box = document.getElementById("num2-box");
+		var num3Box = document.getElementById("num3-box");
+		var num4Box = document.getElementById("num4-box");
+		var num1 = document.getElementById("num1");
+		var num2 = document.getElementById("num2");
+		var num3 = document.getElementById("num3");
+		var num4 = document.getElementById("num4");
+
+		num1Box.style.opacity = "1";
+		num2Box.style.opacity = "1";
+		num3Box.style.opacity = "1";
+		num4Box.style.opacity = "1";
+		num1.style.opacity = "1";
+		num2.style.opacity = "1";
+		num3.style.opacity = "1";
+		num4.style.opacity = "1";
 
 		try{
 			var newNavbar = document.getElementById("newNav");
